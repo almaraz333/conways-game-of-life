@@ -1,5 +1,6 @@
 import pygame
 import numpy as np
+import random
 
 col_about_to_die = (200, 200, 225)
 col_alive = (255, 255, 215)
@@ -26,53 +27,44 @@ def update(surface, cur, sz):
     return nxt
 
 
+def createRandomArray(size):
+    arr = []
+    for i in range(size):
+        int = random.randint(0, 100)
+        if int <= 80:
+            arr.append(1)
+        else:
+            arr.append(0)
+    return arr
+
+
 def init(dimx, dimy):
     cells = np.zeros((dimy, dimx))
-    pattern = np.array([[
-        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    ],
-                        [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0
-                        ],
-                        [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
-                            0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            1, 1, 0, 0, 0
-                        ],
-                        [
-                            0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0,
-                            0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            1, 1, 0, 0, 0
-                        ],
-                        [
-                            1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-                            0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0
-                        ],
-                        [
-                            1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1,
-                            1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0
-                        ],
-                        [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1,
-                            0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0
-                        ],
-                        [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0,
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0
-                        ],
-                        [
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0,
-                            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                            0, 0, 0, 0, 0
-                        ]])
-    pos = (3, 3)
+    pattern = np.array([
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39),
+        createRandomArray(39)
+    ])
+    pos = (30, 30)
     cells[pos[0]:pos[0] + pattern.shape[0],
           pos[1]:pos[1] + pattern.shape[1]] = pattern
     return cells

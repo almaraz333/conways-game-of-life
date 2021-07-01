@@ -2,9 +2,14 @@ import pygame
 import numpy as np
 import random
 
+#colors of cells
 col_about_to_die = (200, 200, 225)
 col_alive = (255, 255, 215)
-col_background = (10, 10, 40)
+col_background = (
+    0,
+    0,
+    0,
+)
 col_grid = (30, 30, 60)
 
 
@@ -27,7 +32,9 @@ def update(surface, cur, sz):
     return nxt
 
 
-def createRandomArray(size):
+def createRandomArray(
+    size
+):  #creates array of size n with 80% chance of each index to be 1 instead of 0
     arr = []
     for i in range(size):
         int = random.randint(0, 100)
@@ -38,31 +45,19 @@ def createRandomArray(size):
     return arr
 
 
-def init(dimx, dimy):
+def initGame(dimx, dimy):
     cells = np.zeros((dimy, dimx))
-    pattern = np.array([
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39),
-        createRandomArray(39)
+    pattern = np.array([  #determines shape of starting pattern
+        createRandomArray(90),
+        createRandomArray(90),
+        createRandomArray(90),
+        createRandomArray(90),
+        createRandomArray(90),
+        createRandomArray(90),
+        createRandomArray(90),
+        createRandomArray(90),
+        createRandomArray(90),
+        createRandomArray(90)
     ])
     pos = (30, 30)
     cells[pos[0]:pos[0] + pattern.shape[0],
@@ -75,7 +70,7 @@ def main(dimx, dimy, cellsize):
     surface = pygame.display.set_mode((dimx * cellsize, dimy * cellsize))
     pygame.display.set_caption("John Conway's Game of Life")
 
-    cells = init(dimx, dimy)
+    cells = initGame(dimx, dimy)
 
     while True:
         for event in pygame.event.get():
